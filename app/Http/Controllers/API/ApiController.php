@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\barang;
 use App\Models\Suplier;
 use App\Models\User;
 
@@ -22,21 +21,18 @@ class ApiController extends Controller
 
     }
 
-    public function barang()
+      public function barang()
     {
-        $barang = new Barang;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->harga = $request->harga;
-        $barang->suplier_id = $request->suplier_id;
-        $barang->cover = $name;
-        $barang->stok = $request->stok;
-        $barang->deskripsi = $request->deskripsi;
-        $barang->save();
-
+        // $artikel = barang::with('suplier')->get();
+        $artikel = DB::table('barangs')
+            ->join('barang_suplier', 'barangs.suplier_id', '=', 'barang_suplier.id', )
+        // ->join('barang_tags', 'barang_tags.id', '=', 'barangs.id', )
+            ->select('barangs.nama_barang', 'barangs.harga', 'barangs.cover', 'barang_suplier.nama as suplier')
+            ->get();
         return response()->json([
             'success' => true,
-            'message' => 'data barang',
-            'data' => $barang,
+            'message' => 'data artikel',
+            'data' => $artikel,
         ], 200);
     }
 
@@ -47,7 +43,7 @@ class ApiController extends Controller
         //Ubah Json
         return response()->json([
             'success' => true,
-            'message' => 'List Data User',
+            'message' => 'List Data Supplier',
             'data' => $user,
         ], 200);
 
