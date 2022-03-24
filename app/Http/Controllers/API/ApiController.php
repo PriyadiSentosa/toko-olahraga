@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Suplier;
 use App\Models\User;
+use App\Models\barang;
+use DB;
+
 
 class ApiController extends Controller
 {
@@ -24,14 +27,14 @@ class ApiController extends Controller
       public function barang()
     {
         // $artikel = barang::with('suplier')->get();
-        $artikel = DB::table('barangs')
+        $barang = DB::table('barangs')
             ->join('barang_suplier', 'barangs.suplier_id', '=', 'barang_suplier.id', )
         // ->join('barang_tags', 'barang_tags.id', '=', 'barangs.id', )
             ->select('barangs.nama_barang', 'barangs.harga', 'barangs.cover', 'barang_suplier.nama as suplier')
             ->get();
         return response()->json([
             'success' => true,
-            'message' => 'data artikel',
+            'message' => 'data barang',
             'data' => $artikel,
         ], 200);
     }
@@ -43,7 +46,7 @@ class ApiController extends Controller
         //Ubah Json
         return response()->json([
             'success' => true,
-            'message' => 'List Data Supplier',
+            'message' => 'List Data User',
             'data' => $user,
         ], 200);
 
