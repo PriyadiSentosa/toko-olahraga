@@ -10,7 +10,6 @@ class ApiController extends Controller
     public function suplier()
     {
         $suplier = Suplier::all();
-        // return view('admin.supplier.index', compact('supplier'));
 
         //Ubah Json
         return response()->json([
