@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\barang;
 use App\Models\Suplier;
 use App\Models\User;
-use DB;
 
 class ApiController extends Controller
 {
@@ -25,11 +24,15 @@ class ApiController extends Controller
 
     public function barang()
     {
-        $barang = Barang::with('suplier')->get();
-        $barang = DB::table('barangs')
-            ->join('barangs', 'barangs.suplier_id', '=', 'barangs.id', )
-            ->select('barangs.nama_barang', 'barangs.harga', 'barangs.stok', 'barangs.cover', 'barangs.nama as suplier')
-            ->get();
+        $barang = new Barang;
+        $barang->nama_barang = $request->nama_barang;
+        $barang->harga = $request->harga;
+        $barang->suplier_id = $request->suplier_id;
+        $barang->cover = $name;
+        $barang->stok = $request->stok;
+        $barang->deskripsi = $request->deskripsi;
+        $barang->save();
+
         return response()->json([
             'success' => true,
             'message' => 'data barang',
