@@ -24,7 +24,7 @@ class ApiController extends Controller
     public function barang()
     {
         // $barang = Barang::with('suplier')->get();
-        $artikel = DB::table('barangs')
+        $barang = DB::table('barangs')
             ->join('barangs', 'barangs.suplier_id', '=', 'barangs.id', )
             ->select('barangs.nama_barang', 'barangs.harga', 'barangs.stok', 'barangs.cover', 'barangs.nama as suplier')
             ->get();
