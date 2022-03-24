@@ -21,6 +21,20 @@ class ApiController extends Controller
 
     }
 
+    public function barang()
+    {
+        // $barang = Barang::with('suplier')->get();
+        $artikel = DB::table('barangs')
+            ->join('barangs', 'barangs.suplier_id', '=', 'barangs.id', )
+            ->select('barangs.nama_barang', 'barangs.harga', 'barangs.stok', 'barangs.cover', 'barangs.nama as suplier')
+            ->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'data barang',
+            'data' => $barang,
+        ], 200);
+    }
+
     public function user()
     {
         $user = User::all();
@@ -28,7 +42,7 @@ class ApiController extends Controller
         //Ubah Json
         return response()->json([
             'success' => true,
-            'message' => 'List Data Supplier',
+            'message' => 'List Data User',
             'data' => $user,
         ], 200);
 
