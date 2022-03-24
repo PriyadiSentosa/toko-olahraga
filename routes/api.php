@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('suplier2', ApiController::class);
+Route::get('suplier', [ApiController::class, 'suplier']);
+
