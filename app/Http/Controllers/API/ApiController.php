@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\barang;
 use App\Models\Suplier;
 use App\Models\User;
-use App\Models\barang;
-
+use DB;
 
 class ApiController extends Controller
 {
@@ -25,7 +25,7 @@ class ApiController extends Controller
 
     public function barang()
     {
-        // $barang = Barang::with('suplier')->get();
+        $barang = Barang::with('suplier')->get();
         $barang = DB::table('barangs')
             ->join('barangs', 'barangs.suplier_id', '=', 'barangs.id', )
             ->select('barangs.nama_barang', 'barangs.harga', 'barangs.stok', 'barangs.cover', 'barangs.nama as suplier')
