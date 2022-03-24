@@ -7,7 +7,7 @@ use App\Models\Suplier;
 
 class ApiController extends Controller
 {
-    public function suplier()
+    public function index()
     {
         $suplier = Suplier::all();
 
