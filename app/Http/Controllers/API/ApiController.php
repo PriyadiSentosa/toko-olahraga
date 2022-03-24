@@ -7,16 +7,16 @@ use App\Models\Suplier;
 
 class ApiController extends Controller
 {
-    public function supplier()
+    public function suplier()
     {
-        $supplier = Supplier::all();
+        $suplier = Suplier::all();
         // return view('admin.supplier.index', compact('supplier'));
 
         //Ubah Json
         return response()->json([
             'success' => true,
             'message' => 'List Data Supplier',
-            'data' => $supplier,
+            'data' => $suplier,
         ], 200);
 
     }
