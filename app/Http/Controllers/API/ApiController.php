@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Suplier;
 use App\Models\User;
+use App\Models\barang;
+
 
 class ApiController extends Controller
 {
